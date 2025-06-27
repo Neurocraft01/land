@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services - Neurocraft</title>
+    <title>Services - AKS Automations</title>
     <meta name="description" content="Comprehensive digital solutions including web development, AI agents, automation, and more.">
     
     <!-- Fonts -->
@@ -305,6 +305,23 @@
             color: var(--primary-color);
         }
 
+        .blackhole {
+            position: absolute;
+            top: -5%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            z-index: 0;
+            mix-blend-mode: lighten;
+        }
+        
+        .blackhole video {
+            width: 100%;
+            height: auto;
+            margin-top: -15%;
+            opacity: 0.7;
+        }
+
         /* Hero Section */
         .hero {
             min-height: 60vh;
@@ -587,7 +604,6 @@
             background: linear-gradient(135deg, var(--background-darker) 0%, var(--background-dark) 100%);
             border-top: 2px solid var(--border-color);
             padding: 60px 20px 40px;
-            text-align: center;
         }
 
         .footer-content {
@@ -595,30 +611,46 @@
             margin: 0 auto;
         }
 
-        .footer-social {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 30px;
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
         }
 
-        .footer-social a {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: rgba(139, 92, 246, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .footer-section h4 {
             color: var(--primary-color);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-section ul li a {
+            color: var(--text-secondary);
             text-decoration: none;
             transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .footer-social a:hover {
-            background: var(--primary-color);
-            color: var(--background-dark);
-            transform: scale(1.1);
+        .footer-section ul li a:hover {
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
         }
 
         .footer-text {
@@ -626,6 +658,61 @@
             font-size: 14px;
         }
 
+        /* Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .container {
+                padding: 100px 15px 40px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .project-card:nth-child(even) {
+                direction: ltr;
+            }
+
+            .project-tabs {
+                gap: 10px;
+            }
+
+            .tab-btn {
+                padding: 10px 16px;
+                font-size: 14px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+      
         /* Animations */
         .animate-on-scroll {
             opacity: 0;
@@ -700,7 +787,10 @@
 </head>
 <body>
     <!-- Background Elements -->
-    <div class="background-overlay"></div>
+    <div class="background-overlay">
+        <video style="min-width: 100%;  min-height: 100%;" autoplay loop muted plays-inline src="videos/galaxy.mp4"></video>
+
+    </div>
     <canvas id="fluid-canvas"></canvas>
     <canvas class="particles-canvas" id="particles-canvas"></canvas>
 
@@ -712,7 +802,7 @@
                 <div class="logo-icon">
                     <i class='bx bx-brain'></i>
                 </div>
-                <span><span style="color: var(--primary-color);">Neuro</span>craft</span>
+                <span><span style="color: var(--primary-color);">AKS</span>Automations</span>
             </a>
 
             <!-- Desktop Navigation -->
@@ -727,8 +817,8 @@
 
             <!-- Social Icons - Desktop -->
             <div class="social-icons">
-                <a href="https://github.com/Neurocraft01" target="_blank">
-                    <i class='bx bxl-github'></i>
+                <a href="https://www.instagram.com/aks_automation/" target="_blank">
+                    <i class='bx bxl-instagram'></i>
                 </a>
                 <a href="#" target="_blank">
                     <i class='bx bxl-linkedin'></i>
@@ -762,6 +852,11 @@
             </nav>
         </div>
     </div>
+
+    <div class="blackhole" data-aos="fade-down" data-aos-duration="500">
+        <video autoplay loop muted plays-inline src="videos/blackhole.mp4"></video>
+    </div>
+    <div><br><br><br><br><br><br><br></div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -1093,17 +1188,58 @@
     </section>
 
     <!-- Footer -->
+     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
-            <div class="footer-social">
-                <a href="https://github.com/Neurocraft01" target="_blank"><i class='bx bxl-github'></i></a>
-                <a href="#" target="_blank"><i class='bx bxl-linkedin'></i></a>
-                <a href="#" target="_blank"><i class='bx bxl-youtube'></i></a>
-                <a href="#" target="_blank"><i class='bx bxl-twitter'></i></a>
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html"><i class='bx bx-home'></i> Home</a></li>
+                        <li><a href="index.html#about"><i class='bx bx-user'></i> About</a></li>
+                        <li><a href="index.html#journey"><i class='bx bx-map'></i> My Journey</a></li>
+                        <li><a href="services.html"><i class='bx bx-cog'></i> Services</a></li>
+                        <li><a href="pricing.html"><i class='bx bx-dollar'></i> Pricing</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Projects</h4>
+                    <ul>
+                        <li><a href="projects.html"><i class='bx bx-briefcase'></i> All Projects</a></li>
+                        <li><a href="projects.html#landing"><i class='bx bx-layout'></i> Landing Pages</a></li>
+                        <li><a href="projects.html#website"><i class='bx bx-globe'></i> Websites</a></li>
+                        <li><a href="projects.html#automation"><i class='bx bx-bot'></i> AI Automation</a></li>
+                        <li><a href="projects.html#data-analysis"><i class='bx bx-bar-chart'></i> Data Analysis</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html#web-development"><i class='bx bx-code-alt'></i> Web Development</a></li>
+                        <li><a href="services.html#ai-automation"><i class='bx bx-brain'></i> AI Automation</a></li>
+                        <li><a href="services.html#data-analysis"><i class='bx bx-data'></i> Data Analysis</a></li>
+                        <li><a href="services.html#chatbots"><i class='bx bx-chat'></i> AI Chatbots</a></li>
+                        <li><a href="services.html#consulting"><i class='bx bx-bulb'></i> Consulting</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="index.html#contact"><i class='bx bx-envelope'></i> Get in Touch</a></li>
+                        <li><a href="tel:+919156903129"><i class='bx bx-phone'></i> +91 91569 03129</a></li>
+                        <li><a href="mailto:aksaiautomation@gmail.com"><i class='bx bx-mail-send'></i> Email Us</a></li>
+                        <li><a href="https://www.instagram.com/aks_automation/" target="_blank"><i class='bx bxl-instagram'></i> GitHub</a></li>
+                    </ul>
+                </div>
             </div>
             
-            <div class="footer-text">
-                <p>&copy; 2025 Neurocraft. All rights reserved. Made with ❤️ in India</p>
+            <div class="footer-bottom">
+                <div class="footer-text">
+                    <p>© 2025 AKS Automations All rights reserved. Made with ❤️ in India</p>
+                </div>
             </div>
         </div>
     </footer>
@@ -1203,7 +1339,7 @@
                 observer.observe(el);
             });
 
-            console.log('Neurocraft Services page loaded successfully!');
+            console.log('AKS Automations Services page loaded successfully!');
         });
     </script>
 </body>
