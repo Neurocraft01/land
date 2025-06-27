@@ -1420,6 +1420,8 @@
         .contact-form input::placeholder,
         .contact-form textarea::placeholder {
             color: var(--text-muted);
+            font-family:'Times New Roman',sans-serif;
+            font-style:italic;
         }
 
         .contact-form textarea {
@@ -1878,6 +1880,7 @@
             justify-content: center;
             gap: 16px;
             margin-top: 20px;
+            text-size: 
         }
 
         .testimonial-control {
