@@ -1751,6 +1751,10 @@
                 gap: 30px;
                 text-align: center;
             }
+                
+            .testimonial-visual{
+                 display: none;
+            }
 
             .process-grid {
                 grid-template-columns: 1fr;
