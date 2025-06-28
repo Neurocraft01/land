@@ -782,7 +782,7 @@
             <!-- Contact Form -->
             <div class="contact-form animate-on-scroll">
                 <h3>Send us a Message</h3>
-                <form id="contactForm">
+                <form id="contactForm" action="https://formsubmit.co/neurocraftai@gmail.com" method="POST">
                     <div class="form-group">
                         <label for="name">Full Name</label>
                         <input type="text" id="name" name="name" required placeholder="Your full name">
@@ -795,7 +795,7 @@
 
                     <div class="form-group">
                         <label for="message">Your Message</label>
-                        <textarea id="message" name="title" required placeholder="Tell us about your project..." rows="5"></textarea>
+                        <textarea id="message" name="message" required placeholder="Tell us about your project..." rows="5"></textarea>
                     </div>
 
                     <button type="submit" class="btn btn-primary submit-btn">
@@ -864,10 +864,10 @@
     </footer>
 
     <script src="fluid-simulation.js"></script>
-   <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<!--    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
         emailjs.init("F6CBInC4wCJK6WZ8DD"); // Move this near the top
-    </script>
+    </script> -->
    <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Mobile detection
@@ -1062,44 +1062,44 @@
                 observer.observe(el);
             });
 
-            // Contact form handling
-            const contactForm = document.getElementById('contactForm');
-            if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
+            // // Contact form handling
+            // const contactForm = document.getElementById('contactForm');
+            // if (contactForm) {
+            //     contactForm.addEventListener('submit', function(e) {
+            //         e.preventDefault();
                     
-                    const submitBtn = this.querySelector('.submit-btn');
-                    const originalText = submitBtn.innerHTML;
+            //         const submitBtn = this.querySelector('.submit-btn');
+            //         const originalText = submitBtn.innerHTML;
             
-                    // Show loading state
-                    submitBtn.innerHTML = '<i class="bx bx-loader-alt" style="animation: spin 1s linear infinite;"></i> Sending...';
-                    submitBtn.disabled = true;
+            //         // Show loading state
+            //         submitBtn.innerHTML = '<i class="bx bx-loader-alt" style="animation: spin 1s linear infinite;"></i> Sending...';
+            //         submitBtn.disabled = true;
             
-                    // Initialize EmailJS if not already done
-                    if (typeof emailjs !== 'undefined') {
-                        emailjs.sendForm('service_ky5m844', 'template_48lrc3b', contactForm)
-                            .then(function(response) {
-                                showNotification('Message sent successfully! We\'ll get back to you soon.', 'success');
-                                contactForm.reset();
-                            }, function(error) {
-                                showNotification('Failed to send message. Please try again.', 'error');
-                                console.error('EmailJS error:', error);
-                            })
-                            .finally(() => {
-                                submitBtn.innerHTML = originalText;
-                                submitBtn.disabled = false;
-                            });
-                    } else {
-                        // Fallback - simulate success after delay
-                        setTimeout(() => {
-                            contactForm.reset();
-                            submitBtn.innerHTML = originalText;
-                            submitBtn.disabled = false;
-                            showNotification('Message received! We\'ll get back to you soon.', 'success');
-                        }, 2000);
-                    }
-                });
-            }
+            //         // Initialize EmailJS if not already done
+            //         if (typeof emailjs !== 'undefined') {
+            //             emailjs.sendForm('service_ky5m844', 'template_48lrc3b', contactForm)
+            //                 .then(function(response) {
+            //                     showNotification('Message sent successfully! We\'ll get back to you soon.', 'success');
+            //                     contactForm.reset();
+            //                 }, function(error) {
+            //                     showNotification('Failed to send message. Please try again.', 'error');
+            //                     console.error('EmailJS error:', error);
+            //                 })
+            //                 .finally(() => {
+            //                     submitBtn.innerHTML = originalText;
+            //                     submitBtn.disabled = false;
+            //                 });
+            //         } else {
+            //             // Fallback - simulate success after delay
+            //             setTimeout(() => {
+            //                 contactForm.reset();
+            //                 submitBtn.innerHTML = originalText;
+            //                 submitBtn.disabled = false;
+            //                 showNotification('Message received! We\'ll get back to you soon.', 'success');
+            //             }, 2000);
+            //         }
+            //     });
+            // }
 
             // Smooth scrolling for navigation links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
