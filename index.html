@@ -1067,27 +1067,20 @@
                     
                     const submitBtn = this.querySelector('.submit-btn');
                     const originalText = submitBtn.innerHTML;
-                    
+            
                     // Show loading state
                     submitBtn.innerHTML = '<i class="bx bx-loader-alt" style="animation: spin 1s linear infinite;"></i> Sending...';
                     submitBtn.disabled = true;
-                    
-                    // EmailJS integration (if available)
+            
+                    // Initialize EmailJS if not already done
                     if (typeof emailjs !== 'undefined') {
-                        const formData = new FormData(this);
-                        const data = {
-                            user_name: formData.get('user_name'),
-                            user_email: formData.get('user_email'),
-                            message: formData.get('message')
-                        };
-
-                        emailjs.send('service_masd1l8', 'template_65jg4mf', data)
+                        emailjs.sendForm('service_ky5m844', 'template_48lrc3b', contactForm)
                             .then(function(response) {
                                 showNotification('Message sent successfully! We\'ll get back to you soon.', 'success');
                                 contactForm.reset();
                             }, function(error) {
                                 showNotification('Failed to send message. Please try again.', 'error');
-                                console.log('EmailJS error:', error);
+                                console.error('EmailJS error:', error);
                             })
                             .finally(() => {
                                 submitBtn.innerHTML = originalText;
