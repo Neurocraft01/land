@@ -1119,38 +1119,38 @@
                 });
             });
 
-            // Notification system
-            function showNotification(message, type = 'success') {
-                const existingNotifications = document.querySelectorAll('.notification');
-                existingNotifications.forEach(notification => notification.remove());
+            // // Notification system
+            // function showNotification(message, type = 'success') {
+            //     const existingNotifications = document.querySelectorAll('.notification');
+            //     existingNotifications.forEach(notification => notification.remove());
                 
-                const notification = document.createElement('div');
-                notification.className = `notification ${type}`;
+            //     const notification = document.createElement('div');
+            //     notification.className = `notification ${type}`;
                 
-                const icon = type === 'success' ? 'bx-check-circle' : 'bx-error-circle';
+            //     const icon = type === 'success' ? 'bx-check-circle' : 'bx-error-circle';
                 
-                notification.innerHTML = `
-                    <div style="display: flex; align-items: center; gap: 10px;">
-                        <i class='bx ${icon}'></i>
-                        <span>${message}</span>
-                    </div>
-                `;
+            //     notification.innerHTML = `
+            //         <div style="display: flex; align-items: center; gap: 10px;">
+            //             <i class='bx ${icon}'></i>
+            //             <span>${message}</span>
+            //         </div>
+            //     `;
                 
-                document.body.appendChild(notification);
+            //     document.body.appendChild(notification);
                 
-                setTimeout(() => {
-                    notification.classList.add('visible');
-                }, 100);
+            //     setTimeout(() => {
+            //         notification.classList.add('visible');
+            //     }, 100);
                 
-                setTimeout(() => {
-                    notification.classList.remove('visible');
-                    setTimeout(() => {
-                        if (document.body.contains(notification)) {
-                            document.body.removeChild(notification);
-                        }
-                    }, 300);
-                }, 5000);
-            }
+            //     setTimeout(() => {
+            //         notification.classList.remove('visible');
+            //         setTimeout(() => {
+            //             if (document.body.contains(notification)) {
+            //                 document.body.removeChild(notification);
+            //             }
+            //         }, 300);
+            //     }, 5000);
+            // }
 
             // Simple particle system for background
             function initParticles() {
