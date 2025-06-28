@@ -782,16 +782,15 @@
             <!-- Contact Form -->
             <div class="contact-form animate-on-scroll">
                 <h3>Send us a Message</h3>
-                <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
-                    <input type="hidden" name="access_key" value="cfe395de-bf17-4bcc-ad85-066e7d7dc9a5">
+                <form id="contactForm">
                     <div class="form-group">
                         <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" required placeholder="Your full name">
+                        <input type="text" id="name" name="user_name" required placeholder="Your full name">
                     </div>
 
                     <div class="form-group">
                         <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" required placeholder="Your email address">
+                        <input type="email" id="email" name="user_email" required placeholder="Your email address">
                     </div>
 
                     <div class="form-group">
@@ -865,10 +864,7 @@
     </footer>
 
     <script src="fluid-simulation.js"></script>
-<!--    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    <script>
-        emailjs.init("F6CBInC4wCJK6WZ8DD"); // Move this near the top
-    </script> -->
+   <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
    <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Mobile detection
@@ -1063,44 +1059,51 @@
                 observer.observe(el);
             });
 
-            // // Contact form handling
-            // const contactForm = document.getElementById('contactForm');
-            // if (contactForm) {
-            //     contactForm.addEventListener('submit', function(e) {
-            //         e.preventDefault();
+            // Contact form handling
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
                     
-            //         const submitBtn = this.querySelector('.submit-btn');
-            //         const originalText = submitBtn.innerHTML;
-            
-            //         // Show loading state
-            //         submitBtn.innerHTML = '<i class="bx bx-loader-alt" style="animation: spin 1s linear infinite;"></i> Sending...';
-            //         submitBtn.disabled = true;
-            
-            //         // Initialize EmailJS if not already done
-            //         if (typeof emailjs !== 'undefined') {
-            //             emailjs.sendForm('service_ky5m844', 'template_48lrc3b', contactForm)
-            //                 .then(function(response) {
-            //                     showNotification('Message sent successfully! We\'ll get back to you soon.', 'success');
-            //                     contactForm.reset();
-            //                 }, function(error) {
-            //                     showNotification('Failed to send message. Please try again.', 'error');
-            //                     console.error('EmailJS error:', error);
-            //                 })
-            //                 .finally(() => {
-            //                     submitBtn.innerHTML = originalText;
-            //                     submitBtn.disabled = false;
-            //                 });
-            //         } else {
-            //             // Fallback - simulate success after delay
-            //             setTimeout(() => {
-            //                 contactForm.reset();
-            //                 submitBtn.innerHTML = originalText;
-            //                 submitBtn.disabled = false;
-            //                 showNotification('Message received! We\'ll get back to you soon.', 'success');
-            //             }, 2000);
-            //         }
-            //     });
-            // }
+                    const submitBtn = this.querySelector('.submit-btn');
+                    const originalText = submitBtn.innerHTML;
+                    
+                    // Show loading state
+                    submitBtn.innerHTML = '<i class="bx bx-loader-alt" style="animation: spin 1s linear infinite;"></i> Sending...';
+                    submitBtn.disabled = true;
+                    
+                    // EmailJS integration (if available)
+                    if (typeof emailjs !== 'undefined') {
+                        const formData = new FormData(this);
+                        const data = {
+                            user_name: formData.get('user_name'),
+                            user_email: formData.get('user_email'),
+                            message: formData.get('message')
+                        };
+
+                        emailjs.send('service_masd1l8', 'template_65jg4mf', data)
+                            .then(function(response) {
+                                showNotification('Message sent successfully! We\'ll get back to you soon.', 'success');
+                                contactForm.reset();
+                            }, function(error) {
+                                showNotification('Failed to send message. Please try again.', 'error');
+                                console.log('EmailJS error:', error);
+                            })
+                            .finally(() => {
+                                submitBtn.innerHTML = originalText;
+                                submitBtn.disabled = false;
+                            });
+                    } else {
+                        // Fallback - simulate success after delay
+                        setTimeout(() => {
+                            contactForm.reset();
+                            submitBtn.innerHTML = originalText;
+                            submitBtn.disabled = false;
+                            showNotification('Message received! We\'ll get back to you soon.', 'success');
+                        }, 2000);
+                    }
+                });
+            }
 
             // Smooth scrolling for navigation links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1119,38 +1122,38 @@
                 });
             });
 
-            // // Notification system
-            // function showNotification(message, type = 'success') {
-            //     const existingNotifications = document.querySelectorAll('.notification');
-            //     existingNotifications.forEach(notification => notification.remove());
+            // Notification system
+            function showNotification(message, type = 'success') {
+                const existingNotifications = document.querySelectorAll('.notification');
+                existingNotifications.forEach(notification => notification.remove());
                 
-            //     const notification = document.createElement('div');
-            //     notification.className = `notification ${type}`;
+                const notification = document.createElement('div');
+                notification.className = `notification ${type}`;
                 
-            //     const icon = type === 'success' ? 'bx-check-circle' : 'bx-error-circle';
+                const icon = type === 'success' ? 'bx-check-circle' : 'bx-error-circle';
                 
-            //     notification.innerHTML = `
-            //         <div style="display: flex; align-items: center; gap: 10px;">
-            //             <i class='bx ${icon}'></i>
-            //             <span>${message}</span>
-            //         </div>
-            //     `;
+                notification.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <i class='bx ${icon}'></i>
+                        <span>${message}</span>
+                    </div>
+                `;
                 
-            //     document.body.appendChild(notification);
+                document.body.appendChild(notification);
                 
-            //     setTimeout(() => {
-            //         notification.classList.add('visible');
-            //     }, 100);
+                setTimeout(() => {
+                    notification.classList.add('visible');
+                }, 100);
                 
-            //     setTimeout(() => {
-            //         notification.classList.remove('visible');
-            //         setTimeout(() => {
-            //             if (document.body.contains(notification)) {
-            //                 document.body.removeChild(notification);
-            //             }
-            //         }, 300);
-            //     }, 5000);
-            // }
+                setTimeout(() => {
+                    notification.classList.remove('visible');
+                    setTimeout(() => {
+                        if (document.body.contains(notification)) {
+                            document.body.removeChild(notification);
+                        }
+                    }, 300);
+                }, 5000);
+            }
 
             // Simple particle system for background
             function initParticles() {
@@ -1277,7 +1280,10 @@
             
             window.addEventListener('scroll', updateOnScroll, { passive: true });
 
-        
+            // Initialize EmailJS
+            if (typeof emailjs !== 'undefined') {
+                emailjs.init("F6CBInC4wCJK6WZ8DD");
+            }
 
             // Process Timeline Animation
             
